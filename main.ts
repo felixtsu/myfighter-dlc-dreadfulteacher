@@ -209,22 +209,18 @@ namespace myfighter_felix_dlc {
                 . . . . f f f . . . . . 
                 `)
             fightext_character.setStImage(player2, fightext_character.stimgKind.Hitover, img`
-                . . . . f f f . . . . . 
-                . . . f f f f f f . . . 
-                . . f e e f 6 6 6 f . . 
-                . . e d d e 1 1 1 f . . 
-                . . 4 d d e 1 1 1 f . . 
-                . . f e e 4 4 4 e f . . 
-                . f f f 4 d d b b f . . 
-                . f 4 d 4 d d d d f f . 
-                f f 4 e 4 f f 4 4 e f f 
-                f f f f 4 4 4 4 4 e f f 
-                f f f f e e e 4 4 e e f 
-                f f f f f e e e 4 e e f 
-                f f f f e e e e e e e f 
-                . f f e e e e e e e f . 
-                . . f f e e e e e f . . 
-                . . . . f f f f f . . . 
+                . . . f f f f f . . . . . . . . 
+                . . f e e e f f f . . . . . . . 
+                . f e e e e e e f f f f f f . . 
+                f e e e 4 4 4 4 d b e 1 1 6 f . 
+                f e e e e 4 4 4 d b 4 1 1 6 f . 
+                f e e e e e 4 f d d 4 1 1 6 f f 
+                f e e e e e 4 f d d 4 e e f f f 
+                f e e e f e 4 4 4 4 e d d e f f 
+                . f e f f f f e d f e d d e f . 
+                . f f f f f f 4 4 f f 4 e f . . 
+                . . f f f f f f f f . . . . . . 
+                . . . f f f f f . . . . . . . . 
                 `)
             fightext_character.setStImage(player2, fightext_character.stimgKind.Lie, img`
                 . . . . . f f f . . . . 
@@ -585,6 +581,7 @@ namespace myfighter_felix_dlc {
                 . . . . . . f f f . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 `, "为什么", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 1)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 1)
                 fightext_projectile.overlapAct(projectile, fightext_sprites.overlapKind.two, function () {
@@ -646,6 +643,7 @@ namespace myfighter_felix_dlc {
                 . . . . . . f f f . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 `, "无处可躲的连环拷问", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 5)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 10)
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
@@ -796,6 +794,7 @@ namespace myfighter_felix_dlc {
                 ........................
                 ........................
                 `, "简单数学题", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 0)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 0)
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
@@ -819,12 +818,14 @@ namespace myfighter_felix_dlc {
                 ........................
                 ........................
                 `, "超纲的问题", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 5)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 10)
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, true)
                 projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
             })
         })
+
         
     }
 }
