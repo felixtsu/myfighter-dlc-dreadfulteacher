@@ -1,5 +1,6 @@
 {
     "name": "MyFighter.DLC.DreadfulTeacher",
+    "version": "0.1.0",
     "description": "",
     "dependencies": {
         "device": "*",
