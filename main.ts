@@ -438,6 +438,10 @@ namespace myfighter_felix_dlc {
             fightext_skill.setSkill(player2, fightext_skill.SkillKind.A1, 10, function (tempVar, undefined) {
                 fightext_skill.shoot2(player2, "为什么", fightext_character.getHPMPXY(player2, fightext_character.HPMP.x), fightext_character.getHPMPXY(player2, fightext_character.HPMP.y))
             })
+            fightext_skill.setSkill(player2, fightext_skill.SkillKind.A2, 10, function (tempVar, undefined) {
+                player2.mp += 50
+                fightext_skill.shoot2(player2, "老师的鼓励", fightext_character.getHPMPXY(player2, fightext_character.HPMP.x), fightext_character.getHPMPXY(player2, fightext_character.HPMP.y))
+            })
             fightext_skill.setSkill(player2, fightext_skill.SkillKind.B2, 10, function (tempVar, undefined) {
                 fightext_skill.shoot2(player2, "不可逾越的底线", fightext_character.getHPMPXY(player2, fightext_character.HPMP.x), 88, 180, 0, 20)
             })
@@ -455,6 +459,10 @@ namespace myfighter_felix_dlc {
             fightext_skill.setSkill(player2, fightext_skill.SkillKind.B1, 10, function (tempVar, undefined) {
                 fightext_character.getSprite(player2, fightext_character.ME.M).say("临时测验", 1000)
                 fightext_skill.shoot2(player2, "临时测验", fightext_character.getHPMPXY(player2, fightext_character.HPMP.x), 48, 180, 0, 20)
+            })
+            fightext_skill.setSkill(player2, fightext_skill.SkillKind.B10, 10, function (tempVar, undefined) {
+                fightext_character.getSprite(player2, fightext_character.ME.M).say("灵魂的拷问", 1000)
+                fightext_skill.shoot2(player2, "灵魂的拷问", fightext_character.getHPMPXY(player2, fightext_character.HPMP.x), 48, 180, 0, 0)
             })
         })
         fightext_animation.defAnimation(function () {
@@ -650,6 +658,82 @@ namespace myfighter_felix_dlc {
                 projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
             })
             fightext_projectile.setProjectile(img`
+                ........................
+                .........bbbb...........
+                .......bb1111bb.........
+                ......bb111111bbbbb.....
+                ......b1111111ddd11b....
+                ......b11111111d1111b...
+                ...bbbd11111111d1111b...
+                ..b1111d111111111111bb..
+                .b111111d111111111dd11b.
+                bb1111111111111d111d11b.
+                b111111d1111d11d111d11b.
+                bb11111d11111dddd11d111b
+                .b1111dddd1111111111111b
+                .b1111d1111111111111111b
+                .b111d11111111111111111b
+                cdd1d1111111dd111111111c
+                cdddd11111111111111111dc
+                cddbd11111d11111dd111dc.
+                .cbbdd111dddd11ddbdddcc.
+                .ccbbdddddbdddddddbcc...
+                ...cccdddbbbdddddcc.....
+                ......ccccccccccc.......
+                ........................
+                ........................
+            `, "灵魂的拷问", function (projectile) {
+                projectile.z -= 2
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.attachPlayer, true)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 5)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 10)
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
+                fightext_projectile.bulletInterval(1, projectile, function() {
+                    fightext_projectile.splitshoot(projectile, "灵魂拷问的问题", 0, 16, 90, 0)
+                })
+                fightext_projectile.bulletInterval(0.1, projectile, function() {
+                    projectile.x = fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E).x, 
+                    projectile.y = fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E).y - 64
+                    fightext_projectile.projectileOwner(projectile).mp -= 1
+                    if (fightext_projectile.projectileOwner(projectile).mp <= 0) {
+                        projectile.destroy()
+                    }
+                })
+            })
+             fightext_projectile.setProjectile(img`
+                 . . . . 5 5 5 5 5 5 5 . . . . .
+                 . . . 5 5 5 1 1 5 5 . . . . . .
+                 . . 5 5 5 1 1 5 5 . . . . . . .
+                 . 5 5 5 1 1 5 5 . . . . . . . .
+                 . 5 5 1 1 5 5 5 5 5 5 5 . . . .
+                 5 5 1 1 1 1 5 5 1 1 5 5 5 5 5 .
+                 5 5 1 1 5 1 1 1 1 1 1 1 1 5 5 5
+                 5 5 5 5 5 5 5 5 1 1 1 5 5 5 5 .
+                 . . . . . 5 5 1 1 5 5 5 5 . . .
+                 . . . . . 5 1 1 5 5 5 5 . . . .
+                 . . . . 5 5 1 5 5 5 . . . . . .
+                 . . . . 5 1 5 5 . . . . . . . .
+                 . . . 5 5 5 . . . . . . . . . .
+                 . . 5 5 5 . . . . . . . . . . .
+                 . 5 5 . . . . . . . . . . . . .
+                 5 5 . . . . . . . . . . . . . .
+             `, "灵魂拷问的问题", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.attachPlayer, true)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 1)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, 1)
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
+                fightext_projectile.bulletInterval(0.1, projectile, function() {
+                    if (projectile.vy == 0 && !projectile.isDestroyed) {
+                        projectile.x = fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E).x, 
+                        projectile.y = fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E).y - 48
+                    }
+                })
+                fightext_projectile.then(1, function(projectile: fightext_projectile.WaveSprite) {
+                    projectile.vy = 80
+                })
+            })
+            fightext_projectile.setProjectile(img`
                 ................
                 ................
                 .....dddddd.....
@@ -801,6 +885,30 @@ namespace myfighter_felix_dlc {
                 projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
             })
             fightext_projectile.setProjectile(img`
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . f f f f f . f f f f f . .
+                . . f f 3 3 3 f f f 3 3 3 f f .
+                . . f 3 3 3 3 3 f 3 3 3 3 3 f .
+                . . f 3 3 3 3 3 3 3 1 1 3 3 f .
+                . . f 3 3 3 3 3 3 3 1 1 3 3 f .
+                . . f 3 3 3 3 3 3 3 3 3 3 3 f .
+                . . f f 3 3 3 b b b 3 3 3 f f .
+                . . . f f 3 b b b b b 3 f f . .
+                . . . . f f b b b b b f f . . .
+                . . . . . f f b b b f f . . . .
+                . . . . . . f f b f f . . . . .
+                . . . . . . . f f f . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+            `, "老师的鼓励", function (projectile) {
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 0)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, -20)
+                fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
+                projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
+            })
+            fightext_projectile.setProjectile(img`
                 ........................
                 .....f..................
                 ....f.f.................
@@ -824,8 +932,6 @@ namespace myfighter_felix_dlc {
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, true)
                 projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
             })
-        })
-
-        
+        })   
     }
 }
