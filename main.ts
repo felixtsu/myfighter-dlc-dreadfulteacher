@@ -903,7 +903,7 @@ namespace myfighter_felix_dlc {
                 . . . . . . . . . . . . . . . .
             `, "老师的鼓励", function (projectile) {
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.noFlip, true)
-                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 0)
+                fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.hurted, 1)
                 fightext_projectile.setBullet(projectile, fightext_projectile.bulletP.damage, -20)
                 fightext_projectile.setBullet2(projectile, fightext_projectile.bulletP2.breakdef, false)
                 projectile.follow(fightext_character.getSprite(fightext_projectile.projectileOwner(projectile), fightext_character.ME.E))
